@@ -170,6 +170,6 @@ typedef struct {
 uint16_t freq_table[88];
 uint8_t  _spk;
 
-void init(const float pitch);
+void culc_freq_table(const float pitch);
 void set_speaker_out(uint8_t spk);
 void play(score_t score[], uint16_t count, float tempo);
