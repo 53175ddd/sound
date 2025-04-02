@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SOUND_H
+#define SOUND_H 
 
 #include <Arduino.h>
 
@@ -167,9 +168,18 @@ typedef struct {
   uint16_t mute_period;
 } score_t;
 
-uint16_t freq_table[88];
-uint8_t  _spk;
+class sound {
+  public:
+    sound(const float pitch);
+    void generate(void);
+    void debug_table(void);
+    void set_speaker_out(uint8_t spk);
+    void play(score_t score[], uint16_t count, float tempo);
 
-void culc_freq_table(const float pitch);
-void set_speaker_out(uint8_t spk);
-void play(score_t score[], uint16_t count, float tempo);
+  private:
+    float    _f;
+    uint16_t freq_table[88];
+    uint8_t  _spk;
+};
+
+#endif

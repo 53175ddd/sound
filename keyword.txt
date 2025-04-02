@@ -2,6 +2,8 @@ score_t KEYWORD1
 
 culc_freq_table KEYWORD2
 set_speaker_out KEYWORD2
+generate  KEYWORD2
+debug_table KEYWORD2
 play  KEYWORD2
 
 A0  LITERAL1
