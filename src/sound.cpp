@@ -37,8 +37,8 @@ void sound::set_speaker_out(uint8_t spk) {
 void sound::play(score_t score[], uint16_t count, float tempo) {
   for(uint16_t i = 0; i < count; i++) {
     uint16_t f = freq_table[score[i].note_number];  
-    uint16_t p = score[i].tone_period * (60 / tempo);
-    uint16_t m = score[i].mute_period * (60 / tempo);
+    uint16_t p = score[i].tone_period * 60 / tempo;
+    uint16_t m = score[i].mute_period * 60 / tempo;
 
     char buffer[32];
     sprintf("freq = %d / delay = %d\n", f, p + m);
