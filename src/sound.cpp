@@ -2,7 +2,6 @@
 
 sound::sound(const float pitch) {
   _f = pitch;
-  Serial.printf("_f = %f", _f); 
 }
 
 void sound::generate(void) {
@@ -10,12 +9,9 @@ void sound::generate(void) {
 
   float f = _f;
 
-  Serial.printf("freq_table[%2d] = %4d, f = %f\n", 48, freq_table[48], f);
-
   for(int8_t i = 47; 0 <= i; i--) {
     f = f / 1.05946309436;
     freq_table[i] = (uint16_t)f;
-    Serial.printf("freq_table[%2d] = %4d, f = %f\n", i, freq_table[i], f);
   }
 
   f = _f;
@@ -23,13 +19,14 @@ void sound::generate(void) {
   for(int8_t i = 49; i < 88; i++) {
     f = f * 1.05946309436;
     freq_table[i] = (uint16_t)f;
-    Serial.printf("freq_table[%2d] = %4d, f = %f\n", i, freq_table[i], f);
   }
 }
 
 void sound::debug_table(void) {
   for(int8_t i = 0; i < (sizeof(freq_table) / sizeof(freq_table[0])); i++) {
-    Serial.printf("freq_table[%2d] = %4d\n", i, freq_table[i]);
+    char buffer[32];
+    sprintf("freq_table[%2d] = %4d\n", i, freq_table[i]);
+    Serial.print(buffer);
   }
 }
 
@@ -43,7 +40,10 @@ void sound::play(score_t score[], uint16_t count, float tempo) {
     uint16_t p = score[i].tone_period * (60 / tempo);
     uint16_t m = score[i].mute_period * (60 / tempo);
 
-    Serial.printf("freq = %d / delay = %d\n", f, p + m);
+    char buffer[32];
+    sprintf("freq = %d / delay = %d\n", f, p + m);
+    Serial.print(buffer);
+    
     tone(_spk, f, p);
     delay(p + m);
   }
