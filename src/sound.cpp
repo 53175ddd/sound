@@ -25,7 +25,7 @@ void sound::generate(void) {
 void sound::debug_table(void) {
   for(int8_t i = 0; i < (sizeof(freq_table) / sizeof(freq_table[0])); i++) {
     char buffer[32];
-    sprintf("freq_table[%2d] = %4d\n", i, freq_table[i]);
+    sprintf(buffer, "freq_table[%2d] = %4d\n", i, freq_table[i]);
     Serial.print(buffer);
   }
 }
@@ -41,7 +41,7 @@ void sound::play(score_t score[], uint16_t count, float tempo) {
     uint16_t m = score[i].mute_period * 60 / tempo;
 
     char buffer[32];
-    sprintf("freq = %d / delay = %d\n", f, p + m);
+    sprintf(buffer, "freq = %d / delay = %d\n", f, p + m);
     Serial.print(buffer);
     
     tone(_spk, f, p);
