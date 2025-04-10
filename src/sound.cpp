@@ -48,3 +48,18 @@ void sound::play(score_t score[], uint16_t count, float tempo) {
     delay(p + m);
   }
 }
+
+void sound::play2(score_t score[], uint16_t count, int8_t shift, float tempo) {
+  for(uint16_t i = 0; i < count; i++) {
+    uint16_t f = freq_table[score[i].note_number + shift];  
+    uint16_t p = score[i].tone_period * 60 / tempo;
+    uint16_t m = score[i].mute_period * 60 / tempo;
+
+    char buffer[32];
+    sprintf(buffer, "freq = %d / delay = %d\n", f, p + m);
+    Serial.print(buffer);
+    
+    tone(_spk, f, p);
+    delay(p + m);
+  }
+}

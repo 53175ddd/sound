@@ -175,6 +175,7 @@ class sound {
     void debug_table(void);
     void set_speaker_out(uint8_t spk);
     void play(score_t score[], uint16_t count, float tempo);
+    void play2(score_t score[], uint16_t count, int8_t shift, float tempo);
 
   private:
     float    _f;
