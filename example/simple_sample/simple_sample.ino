@@ -32,6 +32,10 @@ void setup() {
   music.debug_table();
 
   music.play(ode_to_joy, sizeof(ode_to_joy) / sizeof(score_t), 124);
+
+  music.play2(ode_to_joy, sizeof(ode_to_joy) / sizeof(score_t),  4, 124);
+
+  music.play2(ode_to_joy, sizeof(ode_to_joy) / sizeof(score_t), -4, 124);
 }
 
 void loop() {
